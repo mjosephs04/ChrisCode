@@ -20,7 +20,7 @@ url = 'https://7e9f940f3dbb4372bc2c756d2617ab8d:shppa_87db27a7f15c2fe3a09e62dce9
 #         self.name =  name
 
 class myOrder:
-    orderID = 0
+    ID_Number = 0
     orderNumber = 0
     Text = ""
     Font = ""
@@ -41,35 +41,13 @@ def get_specificItem(number):
 
 def printer():
     i = 0
-    for i in range(len(allOrders))
-    print("ID Number: ", allOrders[i].idNumber)
+    print("ID Number: ", allOrders[i].ID_Number)
     print("Order Number: ", allOrders[i].orderNumber)
     print("Text: ", allOrders[i].Text)
     print("Font: ", allOrders[i].Font)
     print("Color: ", allOrders[i].Color)
     print("Number: ", allOrders[i].Number)
     print("Size: ", allOrders[i].Size)
-
-def lineItemSearch():
-    # inside the line_items portion
-    global specificOrder
-
-    lineItems = specificOrder["line_items"][0]["properties"]
-    index = 0
-    while index < len(lineItems) - 1:
-        index = index + 1 
-        test = lineItems[index]["name"]
-        value = lineItems[index]["value"]
-        if test == "text":
-            myOrder.Text =  value
-        elif test == "Choose Font":
-            myOrder.Font = value
-        elif test == "Choose a Color":
-            myOrder.Color = value
-        elif test == "Size":
-            myOrder.Size = value
-        elif test == "Custom Number":
-            myOrder.Number = value
 
 def orderSearch():
 
@@ -78,9 +56,9 @@ def orderSearch():
     if 'orders' in orders:
         specificOrder = orders['orders'][i]  # Access the first order
 
-        myOrder.idNumber = specificOrder["id"]
+        myOrder.ID_Number = specificOrder["id"]
         myOrder.orderNumber = specificOrder["order_number"]
-
+    
     # inside the line_items portion
 
     lineItems = specificOrder["line_items"][0]["properties"]
@@ -99,8 +77,11 @@ def orderSearch():
             myOrder.Size = value
         elif test == "Custom Number":
             myOrder.Number = value
+    
+    return myOrder
 
     
+orderSearch()
 allOrders.append(myOrder)
 
 printer()
