@@ -1,5 +1,6 @@
 import datetime
 import requests
+import colorSort as cs
 import numpy as np
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
@@ -58,21 +59,17 @@ def orderSearch():
 
 def printer():
     for i in range(0, len(prodIDs)):
-        print(i)
+        #print(i + 1)
         print("ID Number: ", IDNumbers[i])
         print("Order Number: ", orderNumbers[i])
         print("Product ID: ", int(IDproducts[i]), "\n", productCustoms[prodIDs[i]], "\n - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -")
 
 orderSearch()
-
-
-# print(IDproducts)
-# print()
-# print(IDproducts)
 printer()
-# print(productCustoms)
-print()
-# print(len(productCustoms))
+
+#print(productCustoms)
+#print()
+#print(len(productCustoms))
 # print(len(IDNumbers))
 # print(len(IDproducts))
 # print(len(prodIDs))
