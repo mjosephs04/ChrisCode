@@ -1,12 +1,10 @@
-
-import datetime
 import requests
 import customHashish as hash
-from reportlab.pdfbase import pdfmetrics
-from reportlab.pdfbase.ttfonts import TTFont
+# from reportlab.pdfbase import pdfmetrics
+# from reportlab.pdfbase.ttfonts import TTFont
 
 # Define the URL for accessing the Shopify store's API
-url = 'https://7e9f940f3dbb4372bc2c756d2617ab8d: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@lovcompression.myshopify.com/admin/api/2022-04/'
+url = 'https://a49ba18159fe5c18878c02cd077c773b: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@lovcompression.myshopify.com/admin/api/2022-04/'
 
 # Function to retrieve orders from the Shopify API
 
@@ -84,19 +82,25 @@ def dataSearch():
         listOfOrders.append(myOrder)
 
 dataSearch()
-# listOfOrders[2].printOrder()
+
+def printer():
+    for i in len(listOfOrders):
+        listOfOrders[i].printOrder()
 
 
 """
-
+gets each item's product ID
 """
 for item in listOfItems:
     productID = getSpecificProductID(item)
 
     hash.getDataFromLineItem(productID, item)
 
-    hash.listOfColorLists
+    hash.listOfColorLists["White"]
 
-    
-        
-    
+for color in hash.colors:
+    print(color)
+    if(len(hash.listOfColorLists[color]) != 0):
+        for i in range(len(hash.listOfColorLists[color])):
+            hash.listOfColorLists[color][i].print()
+

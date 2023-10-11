@@ -1,31 +1,42 @@
 # make a hashmap of all the custom items, the key will be the productIDs and the data will be what to do when you find that
 # specific item
-#list of product IDs
-prodIDs = [10834995656, 1421879279671, 10834995656, 626889097271] # <-- put them in there
-
-"""
-10834995656 - 
-1421879279671 - 
-10834995656 - text, font, txt_color
-626889097271 - number, font, txt_color
-
-"""
-#1421879279671 - customized text number sleeve
-#10834995656 - customized arm sleeve
-
-# 10834995656 = ["Color*", "Text", "Choose Font", "Choose a Color", "Size*"]
+colors = ["Black", "White", "Red", "Pink", "Maroon", "Royal Blue", "Navy", \
+          "Carolina Blue", "Shark Teal", "Athletic Yellow", "Bright Yellow", \
+            "Sport Orange", "Purple", "Kelly Green", "Forest Green", "HI-Vis Green", \
+                "Vegas Gold", "Shiny Gold", "Shiny Silver", "Grey", "Brown"]
 
 listOfColorLists = {}
 
-listOfColorLists["White"] = []
 listOfColorLists["Black"] = []
+listOfColorLists["White"] = []
 listOfColorLists["Red"] = []
-listOfColorLists["Blue"] = []
+listOfColorLists["Pink"] = []
+listOfColorLists["Maroon"] = []
+listOfColorLists["Royal Blue"] = []
+listOfColorLists["Navy"] = []
+listOfColorLists["Carolina Blue"] = []
+listOfColorLists["Shark Teal"] = []
+listOfColorLists["Athletic Yellow"] = []
+listOfColorLists["Bright Yellow"] = []
+listOfColorLists["Sport Orange"] = []
+listOfColorLists["Purple"] = []
+listOfColorLists["Kelly Green"] = []
+listOfColorLists["Forest Green"] = []
+listOfColorLists["High-Vis Green"] = []
+listOfColorLists["Vegas Gold"] = []
+listOfColorLists["Shiny Gold"] = []
+listOfColorLists["Shiny Silver"] = []
+listOfColorLists["Grey"] = []
+listOfColorLists["Brown"] = []
 
 
 class textData:
     text = ""
     font = ""
+
+    def print(self):
+        print("Text: " + self.text)
+        print("Font: " + self.font)
 
     def textData(self):
         self.text = ""
@@ -42,6 +53,7 @@ class textData:
     
     def getFont(self):
         return self.font
+    
 """
 PushDataToList
     - 
@@ -59,18 +71,18 @@ def pushDataToList(text, color, font):
         print("color not found")
 
 def getDataFromLineItem(productID, item):
-
+    
     def customPick(x):
         return item["properties"][x]["value"]
 
     #Custom Number
-    print(productID)
-    print(type(productID))
+    # print(productID)
+    # print(type(productID))
     if(productID == 626889097271):
         number = customPick(0)
         font = customPick(1)
         textColor = customPick(2)
-        print("inside custom Number")
+        # print("inside custom Number")
         pushDataToList(number, textColor, font)
 
     #Customized Arm Sleeve
@@ -111,5 +123,5 @@ def getDataFromLineItem(productID, item):
         textColor = customPick(2)
         pushDataToList(text, textColor, font)
     
-    else:
-        print("Not a Custom Item")
+    # else:
+    #     print("Not a Custom Item" + item["name"])
