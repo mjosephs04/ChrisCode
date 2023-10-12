@@ -43,10 +43,10 @@ class textData:
         self.font = ""
 
     def setText(self, data):
-        self.text = data
+        self.text = str(data)
 
     def getText(self):
-        return self.text
+        return self.text 
 
     def setFont(self, data):
         self.font = data
@@ -65,6 +65,7 @@ def pushDataToList(text, color, font):
     myTextData.textData()
     myTextData.setText(text)
     myTextData.setFont(font)
+
     if color in listOfColorLists:
         listOfColorLists[color].append(myTextData)
     else:

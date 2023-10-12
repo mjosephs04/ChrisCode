@@ -1,5 +1,6 @@
 import requests
 import customHashish as hash
+import pdfWriter as pw
 # from reportlab.pdfbase import pdfmetrics
 # from reportlab.pdfbase.ttfonts import TTFont
 
@@ -97,10 +98,36 @@ for item in listOfItems:
     hash.getDataFromLineItem(productID, item)
 
     hash.listOfColorLists["White"]
+    
+# for color in hash.colors:
+#     print(color)
+#     print("Length!: ",len(hash.listOfColorLists[color]))
+#     if(len(hash.listOfColorLists[color]) != 0):
+#         for i in range(len(hash.listOfColorLists[color])):
+#             hash.listOfColorLists[color][i].print()
+    
+from reportlab.lib.pagesizes import letter
+from reportlab.pdfgen import canvas
 
-for color in hash.colors:
-    print(color)
+
+# Create a new PDF document
+c = canvas.Canvas("test.pdf", pagesize=letter)
+
+# Set the title and author metadata for the PDF (optional)
+# c.setTitle("My Basic PDF")
+# c.setAuthor("I am a huble slave")
+
+def makePDF(color):
+    c = canvas.Canvas(color + ".pdf", pagesize=letter)
+    # for color in hash.colors:
+    # print(hash.listOfColorLists["Black"])
     if(len(hash.listOfColorLists[color]) != 0):
         for i in range(len(hash.listOfColorLists[color])):
-            hash.listOfColorLists[color][i].print()
+            c.drawString(70, 750 - (10 * i), hash.listOfColorLists[color][i].text)
+            c.drawString(110, 750 - (10 * i), hash.listOfColorLists[color][i].font)
+    c.save()
+
+
+makePDF("White")
+# print(hash.listOfColorLists["Black"][0].font)
 
