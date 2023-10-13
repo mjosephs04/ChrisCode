@@ -2,3 +2,34 @@ Black.pdf
 White.pdf
 test.pdf
 tester.py
+pdfs/Athletic Yellow.pdf
+pdfs/Bright Yellow.pdf
+pdfs/Brown.pdf
+pdfs/Carolina Blue.pdf
+pdfs/Forest Green.pdf
+pdfs/Grey.pdf
+pdfs/High-Vis Green.pdf
+pdfs/Kelly Green.pdf
+pdfs/Navy.pdf
+pdfs/Red.pdf
+pdfs/Royal Blue.pdf
+pdfs/Purple.pdf
+pdfs/Shark Teal.pdf
+pdfs/Shiny Silver.pdf
+pdfs/Shiny Gold.pdf
+pdfs/Sport Orange.pdf
+.gitignore
+pdfs/Vegas Gold.pdf
+pdfs/Pink.pdf
+pdfs/Maroon.pdf
+SF Fedora.ttf
+Roboto-Bold.ttf
+sportsjersey.ttf
+Calibri Bold.TTF
+Dosis-Medium.ttf
+full_Pack_2025.ttf
+BlackOpsOne-Regular.ttf
+Burny.ttf
+Iceberg.ttf
+Bangers.ttf
+__pycache__/pdfWriter.cpython-310.pyc
