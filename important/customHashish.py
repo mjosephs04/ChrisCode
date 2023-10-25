@@ -69,12 +69,14 @@ def pushDataToList(text, color, font):
     if color in listOfColorLists:
         listOfColorLists[color].append(myTextData)
     else:
-        print("color not found")
+        
+        print("color not found: ", color)
 
 def getDataFromLineItem(productID, item):
     
     def customPick(x):
-        return item["properties"][x]["value"]
+        if len(item["properties"]) > 0:
+            return item["properties"][x]["value"]
 
     #Custom Number
     # print(productID)
@@ -88,7 +90,7 @@ def getDataFromLineItem(productID, item):
 
     #Customized Arm Sleeve
     elif(productID == 10834995656):
-        text = item["properties"][0]["value"]
+        text = customPick(0)
         font = customPick(1)
         textColor = customPick(2)
         textLength = customPick(3)
