@@ -4,17 +4,7 @@ from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 import customHashish as hash
 
-startHeight = 750
-pageWidth = 400
-currentWidth = 30
-
-"""
-Needs to read a font and return a number
-"""
-
-"""
-Takes the length of the font and updates the size
-"""
+pageWidth = 600
 
 # registering fonts
 pdfmetrics.registerFont(TTFont('Marker', 'Bangers.ttf'))
@@ -29,7 +19,7 @@ pdfmetrics.registerFont(TTFont('Sporty', 'Calibri Bold.TTF'))
 pdfmetrics.registerFont(TTFont('Burny', 'Burny.ttf'))
 pdfmetrics.registerFont(TTFont('Rounded', "Dosis-Medium.ttf"))
 
-avgFont = 75
+avgFont = 90
 fonts = {}
 fonts["Marker"] = avgFont
 fonts["Tough"] = avgFont - 5
@@ -43,58 +33,69 @@ fonts["Sporty"] = avgFont
 fonts["Burny"] = avgFont
 fonts["Rounded"] = avgFont
 
+
 def fontSize(font):
     return fonts[font]
 
+
 def makePDF(color):
-    global currentWidth
-    pageHeight= 720
+    currentWidth = 15
+    drawHeight = 680
     c = canvas.Canvas("pdfs/" + color + ".pdf", pagesize=letter)
+
     if (len(hash.listOfColorLists[color]) != 0):
-            for i in range(len(hash.listOfColorLists[color])):
-                custom =  hash.listOfColorLists[color][i]
-                c.setFont(custom.font, fontSize(custom.font))
-                stringWidth = pdfmetrics.stringWidth(custom.text, custom.font, fontSize(custom.font))
+        for i in range(len(hash.listOfColorLists[color])):
+            custom = hash.listOfColorLists[color][i]
+            c.setFont(custom.font, fontSize(custom.font))
+            stringWidth = pdfmetrics.stringWidth(
+                custom.text, custom.font, fontSize(custom.font))
 
-               
-                if(custom.text == "Wolf Pack" or custom.text == "Respect"):
-                    print("The font is: ", custom.font)
-                if currentWidth + stringWidth > pageWidth:
-                    currentWidth = 30
-                    pageHeight -= 144
-                
-                    if pageHeight <= 0:
-                        c.showPage()
-                        pageHeight = 730
-                        c.setFont(custom.font, fontSize(custom.font))
-                
-                
-                c.drawString(currentWidth, pageHeight, custom.text)
-                currentWidth += stringWidth + 20
+            if currentWidth + stringWidth > pageWidth:
+                currentWidth = 15
+                drawHeight -= 144
 
-                # ascent = pdfmetrics.getAscent(custom.font, fontSize(custom.font))
-                # descent = pdfmetrics.getDescent(custom.font, fontSize(custom.font))
-                # stringHeight = ascent - descent
+                if drawHeight <= 0:
+                    c.showPage()
+                    drawHeight = 710
+                    c.setFont(custom.font, fontSize(custom.font))
 
-            
-            c.save()
+            c.drawString(currentWidth, drawHeight, custom.text)
+            currentWidth += stringWidth + 30
+
+    c.save()
+
 
 def makePDFs():
-    global currentWidth
+    
     for color in hash.listOfColorLists:
-        pageHeight = 750
+        drawHeight = 690
+        currentWidth = 15
+        # print("The currentHeight is: ", drawHeight, " for color: ", color)
+        drawHeight = 720
+        c = canvas.Canvas("pdfs/" + color + ".pdf", pagesize=letter)
 
         if (len(hash.listOfColorLists[color]) != 0):
-            
-            c = canvas.Canvas("pdfs/" + color + ".pdf", pagesize=letter)
             for i in range(len(hash.listOfColorLists[color])):
-                custom =  hash.listOfColorLists[color][i]
+                custom = hash.listOfColorLists[color][i]
                 c.setFont(custom.font, fontSize(custom.font))
-                c.drawString(currentWidth, pageHeight, custom.text)
-                stringWidth = pdfmetrics.stringWidth(custom.text, custom.font, fontSize(custom.font))
-                currentWidth += stringWidth
+                stringWidth = pdfmetrics.stringWidth(
+                    custom.text, custom.font, fontSize(custom.font))
 
-                if currentWidth > pageWidth:
-                    currentWidth = 30
-                    pageHeight -= 144
-            c.save()
+                if currentWidth + stringWidth > pageWidth:
+                    currentWidth = 15
+                    drawHeight -= 144
+
+                    if drawHeight <= 0:
+                        c.showPage()
+                        drawHeight = 710
+                        c.setFont(custom.font, fontSize(custom.font))
+
+                c.drawString(currentWidth, drawHeight, custom.text)
+                currentWidth += stringWidth + 30
+        c.save()
+
+
+def tester(color):
+    c = canvas.Canvas('pdfs/' + color + ".pdf", pagesize=letter)
+    c.drawString(20, 20, "helo")
+    c.save()

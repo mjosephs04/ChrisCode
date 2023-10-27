@@ -11,7 +11,6 @@ url = 'https://a49ba18159fe5c18878c02cd077c773b:shpat_1fa5f01ec8eddbf700923a383f
 
 # Function to retrieve orders from the Shopify API
 
-
 def get_orders():
     endpoint = 'orders.json'
     r = requests.get(url + endpoint)
@@ -108,4 +107,6 @@ for item in listOfItems:
 
         hash.listOfColorLists["White"]
 
-pdfWriter.makePDF("White")
+# pdfWriter.makePDF("White")
+pdfWriter.makePDFs()
+# pdfWriter.tester("White")
