@@ -107,6 +107,6 @@ for item in listOfItems:
 
         hash.listOfColorLists["White"]
 
-# pdfWriter.makePDF("White")
-pdfWriter.makePDFs()
+pdfWriter.makePDF("White")
+# pdfWriter.makePDFs()
 # pdfWriter.tester("White")

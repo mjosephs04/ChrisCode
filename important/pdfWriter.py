@@ -3,6 +3,7 @@ from reportlab.pdfgen import canvas
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 import customHashish as hash
+import tkinter as tk
 
 pageWidth = 600
 
@@ -38,7 +39,15 @@ def fontSize(font):
     return fonts[font]
 
 
+def tester(color):
+    c = canvas.Canvas('pdfs/' + color + ".pdf", pagesize=letter)
+    c.drawString(20, 20, "helo")
+    c.save()
+
+
 def makePDF(color):
+
+    print("color is", color)
     currentWidth = 15
     drawHeight = 680
     c = canvas.Canvas("pdfs/" + color + ".pdf", pagesize=letter)
@@ -61,12 +70,11 @@ def makePDF(color):
 
             c.drawString(currentWidth, drawHeight, custom.text)
             currentWidth += stringWidth + 30
-
+    c.drawString(20, 20, "Saved")
     c.save()
 
 
 def makePDFs():
-    
     for color in hash.listOfColorLists:
         drawHeight = 690
         currentWidth = 15
@@ -93,9 +101,3 @@ def makePDFs():
                 c.drawString(currentWidth, drawHeight, custom.text)
                 currentWidth += stringWidth + 30
         c.save()
-
-
-def tester(color):
-    c = canvas.Canvas('pdfs/' + color + ".pdf", pagesize=letter)
-    c.drawString(20, 20, "helo")
-    c.save()
